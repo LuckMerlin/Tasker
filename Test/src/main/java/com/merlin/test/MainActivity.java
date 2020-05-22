@@ -4,7 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.merlin.task.DownloadTask;
+import com.merlin.task.FileTask;
+import com.merlin.task.Task;
 import com.merlin.task.TaskGroup;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,9 +14,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new DownloadTask<>();
+        Task task=new DownloadTask();
         TaskGroup group=new TaskGroup<>();
-        group.ad
+        group.add(task);
         group.execute(null);
     }
 }

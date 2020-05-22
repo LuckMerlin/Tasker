@@ -66,6 +66,16 @@ public class TaskGroup<M extends Task,T>  extends AbsTask<T>{
         return false;
     }
 
+    public final boolean remove(Object obj){
+        Collection<M> list=null!=obj?mList:null;
+        if (null!=list){
+            synchronized (list){
+               return list.remove(obj);
+            }
+        }
+        return false;
+    }
+
     public final M index(Object obj){
         Collection<M> list=mList;
         if (null!=obj&&null!=list){
