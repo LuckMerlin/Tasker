@@ -44,7 +44,7 @@ public class TaskGroup<M extends Task,T>  extends AbsTask<T>{
         return mDoing;
     }
 
-    public M onResolveNextUnFinish(){
+    M onResolveNextUnFinish(){
         Collection<M> list=mList;
         if (null!=list&&list.size()>0){
             for (M child:list) {
@@ -54,6 +54,16 @@ public class TaskGroup<M extends Task,T>  extends AbsTask<T>{
             }
         }
         return null;
+    }
+
+    public final boolean add(M obj){
+        if (null!=obj){
+            Collection<M> list=mList;
+            synchronized (list=null!=list?list:(mList=new ArrayList<>(1))) {
+                return list.add(obj);
+            }
+        }
+        return false;
     }
 
     public final M index(Object obj){
