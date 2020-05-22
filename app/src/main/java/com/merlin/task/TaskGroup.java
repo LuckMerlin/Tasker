@@ -10,7 +10,7 @@ public class TaskGroup<M extends Task,T>  extends AbsTask<T>{
     public TaskGroup() {
         super();
     }
-    
+
     public TaskGroup(int initialCapacity) {
         mList=initialCapacity>=0?new ArrayList<M>(initialCapacity):null;
     }
@@ -56,5 +56,28 @@ public class TaskGroup<M extends Task,T>  extends AbsTask<T>{
         return null;
     }
 
+    public final M index(Object obj){
+        Collection<M> list=mList;
+        if (null!=obj&&null!=list){
+            synchronized (list){
+                for (M child:list) {
+                    if (null!=child&&child.equals(obj)){
+                        return child;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public final int size(){
+        Collection<M> list=mList;
+        if (null!=list){
+            synchronized (list){
+                return list.size();
+            }
+        }
+        return -1;
+    }
 
 }
