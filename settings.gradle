@@ -1,2 +1,3 @@
 rootProject.name='MTasker'
 include ':app'
+include ':Test'
